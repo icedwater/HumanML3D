@@ -4,11 +4,10 @@ from common.skeleton import Skeleton
 import numpy as np
 import os
 from common.quaternion import *
-from paramUtil import *
+from custom_paramUtil import t2m_kinematic_chain, t2m_raw_offsets, t2m_tgt_skel_id
 
 import torch
 from tqdm import tqdm
-import os
 
 def uniform_skeleton(positions, target_offset):
     src_skel = Skeleton(n_raw_offsets, kinematic_chain, 'cpu')
@@ -236,7 +235,7 @@ if __name__ == "__main__":
     ## data for existing rig
     ## orig. 5, 8; [8, 11], [7, 10]; [2, 1, 17, 16]; 2, 1; 22 (000021)
     ## cf. 6, 1; [9, 10], [4, 5]; [6, 1, 23, 18]; 6, 1; 27 (003)
-    example_id = "000021"
+    example_id = t2m_tgt_skel_id
     # Lower legs
     l_idx1, l_idx2 = 5, 8
     # Right/Left foot

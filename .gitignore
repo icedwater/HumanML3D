@@ -10,6 +10,10 @@
 # HumanML3D texts, when unzipped
 HumanML3D/texts/*.txt
 
+# amass or body model data, when unzipped
+amass_data/
+body_models/
+
 # zip files
 *.zip
 *.bz2

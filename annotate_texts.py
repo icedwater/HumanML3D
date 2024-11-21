@@ -4,6 +4,7 @@ parts-of-speech tags, then write them in the training format to a new file.
 """
 
 import spacy
+from tqdm import tqdm
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -75,22 +76,39 @@ def write_output_file(output_list: list[str], output_file: str):
         outfile.writelines(output_list)
 
 
-def main():
+def tag_one_file(input_file: str, output_file: str):
     """
-    Actually run the conversion here.
+    Do the tagging for one input file and return one output file.
+
+    :param input_file:      string path to file with untagged descriptions
+    :param output_file:     string path to file for storing results
     """
     output = []
     strings = []
-    INPUT_FILE = "testfile.txt"
-    OUTPUT_FILE = "taggedfile.txt"
 
-    strings = read_text_from_file(input_file=INPUT_FILE)
+    strings = read_text_from_file(input_file=input_file)
 
     for input_line in strings:
         output_line = prepare_combined_line(input_line)
         output.append(output_line)
 
-    write_output_file(output_list=output, output_file=OUTPUT_FILE)
+    write_output_file(output_list=output, output_file=output_file)
+
+
+def main():
+    """
+    Allow for directories to be passed in
+    """
+    from os import listdir
+    from os.path import join as pjoin
+
+    data_dir = "Custom/texts/raw"
+    save_dir = "Custom/texts"
+
+    for text_file in tqdm(listdir(data_dir)):
+        print(f"Processing {text_file}...")
+        tag_one_file(input_file=pjoin(data_dir, text_file), output_file=pjoin(save_dir, text_file))
+
 
 if __name__ == "__main__":
     main()

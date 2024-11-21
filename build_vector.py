@@ -4,7 +4,7 @@ from common.skeleton import Skeleton
 import numpy as np
 import os
 from common.quaternion import *
-from custom_paramUtil import t2m_kinematic_chain, t2m_raw_offsets, t2m_tgt_skel_id
+from custom_paramUtil import custom_kinematic_chain, custom_raw_offsets, custom_tgt_skel_id
 
 import torch
 from tqdm import tqdm
@@ -235,26 +235,26 @@ if __name__ == "__main__":
     ## data for existing rig
     ## orig. 5, 8; [8, 11], [7, 10]; [2, 1, 17, 16]; 2, 1; 22 (000021)
     ## cf. 6, 1; [9, 10], [4, 5]; [6, 1, 23, 18]; 6, 1; 27 (003)
-    example_id = t2m_tgt_skel_id
+    example_id = custom_tgt_skel_id
     # Lower legs
-    l_idx1, l_idx2 = 5, 8
+    l_idx1, l_idx2 = 6, 1
     # Right/Left foot
-    fid_r, fid_l = [8, 11], [7, 10]
+    fid_r, fid_l = [9, 10], [4, 5]
     # Face direction, r_hip, l_hip, sdr_r, sdr_l
-    face_joint_indx = [2, 1, 17, 16]
+    face_joint_indx = [6, 1, 23, 18]
     # l_hip, r_hip
-    r_hip, l_hip = 2, 1
-    joints_num = 22
+    r_hip, l_hip = 6, 1
+    joints_num = 27
     # ds_num = 8
-    data_dir = './joints/'
-    save_dir1 = './HumanML3D/new_joints/'
-    save_dir2 = './HumanML3D/new_joint_vecs/'
+    data_dir = './cjoints/'
+    save_dir1 = './Custom/new_joints/'
+    save_dir2 = './Custom/new_joint_vecs/'
     
     os.makedirs(save_dir1, exist_ok=True)
     os.makedirs(save_dir2, exist_ok=True)
 
-    n_raw_offsets = torch.from_numpy(t2m_raw_offsets)
-    kinematic_chain = t2m_kinematic_chain
+    n_raw_offsets = torch.from_numpy(custom_raw_offsets)
+    kinematic_chain = custom_kinematic_chain
 
     # Get offsets of target skeleton
     example_data = np.load(os.path.join(data_dir, example_id + '.npy'))

@@ -63,7 +63,6 @@ def mean_variance(data_dir: str, save_dir: str, joints_num: int):
     return Mean, Std
 
 if __name__ == '__main__':
-    data_dir = './HumanML3D/new_joint_vecs_abs_3d/'
-    save_dir = './HumanML3D/'
-    mean, std = mean_variance(data_dir, save_dir, 22)
-
+    data_dir = './Custom/new_joint_vecs/'
+    save_dir = './Custom/'
+    mean, std = mean_variance(data_dir, save_dir, 27)

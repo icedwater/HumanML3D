@@ -65,4 +65,4 @@ def mean_variance(data_dir: str, save_dir: str, joints_num: int):
 if __name__ == '__main__':
     data_dir = './Custom/new_joint_vecs/'
     save_dir = './Custom/'
-    mean, std = mean_variance(data_dir, save_dir, 27)
+    mean, std = mean_variance(data_dir=data_dir, save_dir=save_dir, joints_num=27)

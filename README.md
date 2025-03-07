@@ -50,6 +50,8 @@ conda env create -f environment.yaml
 conda activate torch_render
 ```
 
+Alternatively, install `requirements.txt` into the virtual environment using the workflow of your choice.
+
 In the case of installation failure, you could alternatively install the following:
 ```sh
 - Python==3.7.10
